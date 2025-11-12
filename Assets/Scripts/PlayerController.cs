@@ -15,10 +15,6 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftArrow)) { transform.Translate(new Vector3(0, 0, -1 * Time.deltaTime * speed)); }
         if (Input.GetKey(KeyCode.RightArrow)) { transform.Translate(new Vector3(0, 0, 1 * Time.deltaTime * speed)); }
-    }
-
-    private void FixedUpdate()
-    {
         if (Input.GetKeyDown(KeyCode.UpArrow) && canJump)
         {
             rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
