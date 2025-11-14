@@ -18,9 +18,13 @@ public class GroundSpawner : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "ground")
+        if(other.gameObject.CompareTag("ground"))
         {
             Instantiate(groundPref, spawnLocation, Quaternion.identity);
         }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        Destroy(other.gameObject);
     }
 }

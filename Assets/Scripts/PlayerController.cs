@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.UpArrow) && canJump)
         {
             rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
+            canJump = false;
         }
     }
 
@@ -27,14 +28,6 @@ public class PlayerController : MonoBehaviour
         if(collision.gameObject.CompareTag("ground"))
         {
             canJump = true;
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("ground"))
-        {
-            canJump = false;
         }
     }
     #endregion
