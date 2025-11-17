@@ -1,26 +1,81 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    private float speed = 5.4f;
+    public int scrapAmount;
+    public int points;
+
+    private float jumpHeight = 7.8f;
+    private bool canJump = false;
+
+    private float pcSpeed = 6.4f;
+    private float mobileSpeed = 25f;
+    private float deadZone = 0.03f;
+    private bool autoCalibrateOnStart = true;
+
     private Rigidbody rb;
-    private float jumpHeight = 7.6f;
-    public bool canJump = false;
+    Vector2 calib;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        if (autoCalibrateOnStart) { calib = ReadTiltXY(); }
+    }
+
+    public void CallibrateNow() => calib = ReadTiltXY();
+
+    void FixedUpdate()
+    {
+        #region ACELEROMETRO CELULAR
+        Vector2 tilt = ReadTiltXY().normalized - calib;
+
+        if (tilt.magnitude < deadZone)
+        {
+            tilt = Vector2.zero;
+        }
+
+        Vector3 force = new Vector3(0, 0, tilt.x) * mobileSpeed;
+        rb.AddForce(force, ForceMode.Acceleration);
+        #endregion
+
+        #region configurações pra jogar no computador
+
+        float horizontal = Input.GetAxis("Horizontal");
+
+        Vector3 move = new Vector3(0, 0, horizontal);
+        rb.MovePosition(transform.position + move * pcSpeed * Time.deltaTime);
+
+        #endregion
     }
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.LeftArrow)) { transform.Translate(new Vector3(0, 0, -1 * Time.deltaTime * speed)); }
-        if (Input.GetKey(KeyCode.RightArrow)) { transform.Translate(new Vector3(0, 0, 1 * Time.deltaTime * speed)); }
+        //PC Jump
         if (Input.GetKeyDown(KeyCode.UpArrow) && canJump)
         {
             rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
             canJump = false;
         }
+
+        //Mobile Jump
+        if (Input.touchCount > 0)
+        {
+            if (Input.GetTouch(0).phase == TouchPhase.Began && canJump)
+            {
+                rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
+                canJump = false;
+            }
+        }
     }
+
+    Vector2 ReadTiltXY()
+    {
+        Vector3 acceleration = Input.acceleration;
+
+        return new Vector2(acceleration.x, acceleration.y);
+    }
+
+
 
     #region Colisões
     private void OnCollisionEnter(Collision collision)
@@ -28,6 +83,21 @@ public class PlayerController : MonoBehaviour
         if(collision.gameObject.CompareTag("ground"))
         {
             canJump = true;
+        }
+
+        if (collision.gameObject.CompareTag("Obstacle") || collision.gameObject.CompareTag("JumpableObstacle"))
+        {
+            SceneManager.LoadScene(0);
+        }
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Scrap"))
+        {
+            scrapAmount++;
+            Destroy(other.gameObject);
         }
     }
     #endregion

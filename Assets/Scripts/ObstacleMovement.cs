@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class GroundMovement : MonoBehaviour
+public class ObstacleMovement : MonoBehaviour
 {
-    public GameManager gameManager;
+    private GameManager gameManager;
     void Start()
     {
         GameObject gameManagerObj = GameObject.Find("GameManager");
