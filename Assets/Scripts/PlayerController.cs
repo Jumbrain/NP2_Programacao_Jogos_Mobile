@@ -3,7 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    public int scrapAmount;
+    public int metaScrapAmount;
+    public int elecScrapAmount;
     public int points;
 
     private float jumpHeight = 7.8f;
@@ -94,9 +95,15 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Scrap"))
+        if (other.gameObject.CompareTag("ElectricScrap"))
         {
-            scrapAmount++;
+            elecScrapAmount++;
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.CompareTag("MetalScrap"))
+        {
+            metaScrapAmount++;
             Destroy(other.gameObject);
         }
     }

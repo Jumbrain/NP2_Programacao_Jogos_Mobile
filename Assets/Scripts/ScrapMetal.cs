@@ -1,14 +1,14 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Scrap : MonoBehaviour
+public class ScrapMetal : MonoBehaviour
 {
-    [SerializeField] private Sprite[] spr;
+    [SerializeField] private Sprite[] sprMetal;
     private GameManager gameManager;
     void Start()
     {
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = spr[Random.Range(0, spr.Length)];
+        spriteRenderer.sprite = sprMetal[Random.Range(0, sprMetal.Length)];
 
         GameObject gameManagerObj = GameObject.Find("GameManager");
         gameManager = gameManagerObj.GetComponent<GameManager>();

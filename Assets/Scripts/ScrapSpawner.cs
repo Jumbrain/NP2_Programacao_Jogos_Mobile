@@ -3,7 +3,7 @@ using UnityEngine;
 public class ScrapSpawner : MonoBehaviour
 {
     public int spawnQuantity;
-    [SerializeField] private GameObject scrapPrefs;
+    [SerializeField] private GameObject[] scrapPrefs;
     [SerializeField] private Vector3 spawnLocation;
     //[SerializeField] private int randomIndex;
 
@@ -28,7 +28,7 @@ public class ScrapSpawner : MonoBehaviour
                 spawnLocation.x = Random.Range(-160, -70);
                 spawnLocation.z = Random.Range(-11.5f, 11.5f);
 
-                Instantiate(scrapPrefs, spawnLocation, Quaternion.identity);
+                Instantiate(scrapPrefs[Random.Range(0, scrapPrefs.Length)], spawnLocation, Quaternion.identity);
             }
         }
     }

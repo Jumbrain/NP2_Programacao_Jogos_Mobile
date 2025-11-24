@@ -7,7 +7,8 @@ TagManager:
   - ground
   - Obstacle
   - JumpableObstacle
-  - Scrap
+  - ElectricScrap
+  - MetalScrap
   layers:
   - Default
   - TransparentFX
