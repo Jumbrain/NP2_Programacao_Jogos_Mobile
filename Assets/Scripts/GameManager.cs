@@ -1,17 +1,22 @@
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public float gameSpeed;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    [SerializeField] private PlayerController playerController;
+
+    [SerializeField] private TextMeshProUGUI textMetal;
+    [SerializeField] private TextMeshProUGUI textElectrical;
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        textMetal.text = "" + playerController.metaScrapAmount;
+        textElectrical.text = "" + playerController.elecScrapAmount;
     }
 }
