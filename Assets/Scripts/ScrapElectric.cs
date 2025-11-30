@@ -5,8 +5,13 @@ public class ScrapElectric : MonoBehaviour
 {
     [SerializeField] private Sprite[] sprElectric;
     private GameManager gameManager;
+    private Rigidbody rb;
+
+    private bool goUp = true;
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
+
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = sprElectric[Random.Range(0, sprElectric.Length)];
 
@@ -20,5 +25,31 @@ public class ScrapElectric : MonoBehaviour
     void Update()
     {
         transform.Translate(new Vector3(0, 0, 1 * Time.deltaTime * gameManager.gameSpeed));
+
+        UpAndDown();
+    }
+
+    void UpAndDown()
+    {
+        Vector3 lowerPos = new Vector3(0, -0.5f, 0);
+        Vector3 upperPos = new Vector3(0, 0.5f, 0);
+
+        if (goUp)
+        {
+            rb.AddForce(upperPos, ForceMode.Force);
+            if (gameObject.transform.position.y > 4.5)
+            {
+                goUp = false;
+            }
+        }
+        
+        if (!goUp)
+        {
+            rb.AddForce(lowerPos, ForceMode.Force);
+            if (gameObject.transform.position.y < 3)
+            {
+                goUp = true;
+            }
+        }
     }
 }

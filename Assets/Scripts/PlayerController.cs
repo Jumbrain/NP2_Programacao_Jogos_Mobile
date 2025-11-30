@@ -7,12 +7,14 @@ public class PlayerController : MonoBehaviour
     public int elecScrapAmount;
     public int points;
 
+    public Vector3 force;
+
     private float jumpHeight = 7.8f;
     private bool canJump = false;
 
     private float pcSpeed = 6.4f;
-    private float mobileSpeed = 25f;
-    private float deadZone = 0.03f;
+    private float mobileSpeed = 1.4f;
+    private float deadZone = 0.9f;
     private bool autoCalibrateOnStart = true;
 
     private Rigidbody rb;
@@ -35,8 +37,19 @@ public class PlayerController : MonoBehaviour
             tilt = Vector2.zero;
         }
 
-        Vector3 force = new Vector3(0, 0, tilt.x) * mobileSpeed;
-        rb.AddForce(force, ForceMode.Acceleration);
+        #region Diversão Infinita PIADA
+
+        //if (tilt.x < 0 && tilt.magnitude > deadZone) { transform.Rotate(0, -15, 0); }
+
+        //if (tilt.x > 0 && tilt.magnitude > deadZone) { transform.Rotate(0, 15, 0); }
+
+        #endregion
+
+        force = new Vector3(0, 0, tilt.x) * mobileSpeed;
+        if(force.z > 0.5f) { force.z = 0.5f; }
+        if(force.z < -0.5f) { force.z = -0.5f; }
+
+        rb.AddForce(force, ForceMode.Impulse);
         #endregion
 
         #region configurações pra jogar no computador
@@ -46,11 +59,17 @@ public class PlayerController : MonoBehaviour
         Vector3 move = new Vector3(0, 0, horizontal);
         rb.MovePosition(transform.position + move * pcSpeed * Time.deltaTime);
 
+        #region Diversão Infinita PIADA
+        if (horizontal < 0) { transform.Rotate(0, -15, 0); }
+        if (horizontal > 0) { transform.Rotate(0, 15, 0); }
+        #endregion
+
         #endregion
     }
 
     void Update()
     {
+
         //PC Jump
         if (Input.GetKeyDown(KeyCode.UpArrow) && canJump)
         {
