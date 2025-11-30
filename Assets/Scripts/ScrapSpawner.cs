@@ -21,7 +21,7 @@ public class ScrapSpawner : MonoBehaviour
     {
         if (other.gameObject.CompareTag("ground"))
         {
-            spawnQuantity = Random.Range(1, 3);
+            spawnQuantity = Random.Range(2, 4);
 
             for (int i = 0; i < spawnQuantity; i++)
             {

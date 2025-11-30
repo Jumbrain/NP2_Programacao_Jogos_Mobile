@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Obstacle") || collision.gameObject.CompareTag("JumpableObstacle"))
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene("Derrota");
         }
 
     }

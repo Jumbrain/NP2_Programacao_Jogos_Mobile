@@ -268,7 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cd133811f8d5cd4589b20f1c4ea6f1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  proximaFase: Seletor Fase
+  proximaFase: Fim
 --- !u!1 &229274194
 GameObject:
   m_ObjectHideFlags: 0
@@ -1264,7 +1264,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 114
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &1424281312
 MonoBehaviour:
@@ -1281,7 +1281,7 @@ MonoBehaviour:
   metaScrapAmount: 0
   elecScrapAmount: 0
   points: 0
-  retryScene: Fase 1
+  retryScene: 
   vida: 3
   force: {x: 0, y: 0, z: 0}
 --- !u!136 &1424281313
@@ -1587,16 +1587,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7608a5d0ff4d2504faf700b8c038d1d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameSpeed: 8
+  gameSpeed: 16
   playerController: {fileID: 1424281312}
   textMetal: {fileID: 827241814}
   textElectrical: {fileID: 229274196}
   concluido: {fileID: 193401231}
-  requisitoSucataMetal: 7
-  requisitoSucataEletrica: 4
-  faseIndex: 1
-  fase2Liberada: 0
-  fase3Liberada: 0
+  requisitoSucataMetal: 18
+  requisitoSucataEletrica: 13
+  faseIndex: 3
 --- !u!4 &2101265233
 Transform:
   m_ObjectHideFlags: 0

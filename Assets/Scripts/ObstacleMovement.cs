@@ -5,6 +5,7 @@ public class ObstacleMovement : MonoBehaviour
     private GameManager gameManager;
     void Start()
     {
+        if(gameObject.CompareTag("Obstacle")) { gameObject.transform.Rotate(-90, 0, 0); }
         GameObject gameManagerObj = GameObject.Find("GameManager");
         gameManager = gameManagerObj.GetComponent<GameManager>();
     }

@@ -6,8 +6,20 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Tela Inicial.unity
+    guid: 34800dfec75ac534d8893b0fda610d0c
+  - enabled: 1
+    path: Assets/Scenes/Seletor Fase.unity
+    guid: 85e91177f8b7605449abe54867959b93
+  - enabled: 1
     path: Assets/Scenes/Fase 1.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/Fase 2.unity
+    guid: 8d864bd7ecf2e01448039d935815d6b0
+  - enabled: 1
+    path: Assets/Scenes/Fase 3.unity
+    guid: 5b350b6ed2edb174d93477883faec409
   m_configObjects:
     com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000, guid: b9b3589dd70042146b76ac462ef424da, type: 2}
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 1c2756a6c96479247be3573d9c44d666, type: 2}

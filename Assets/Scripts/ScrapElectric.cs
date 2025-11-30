@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -7,9 +8,11 @@ public class ScrapElectric : MonoBehaviour
     private GameManager gameManager;
     private Rigidbody rb;
 
-    private bool goUp = true;
+    private Vector3 startPosition;
+
     void Start()
     {
+        startPosition = transform.position;
         rb = GetComponent<Rigidbody>();
 
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
@@ -31,25 +34,9 @@ public class ScrapElectric : MonoBehaviour
 
     void UpAndDown()
     {
-        Vector3 lowerPos = new Vector3(0, -0.5f, 0);
-        Vector3 upperPos = new Vector3(0, 0.5f, 0);
+        float speed = 2.5f;
 
-        if (goUp)
-        {
-            rb.AddForce(upperPos, ForceMode.Force);
-            if (gameObject.transform.position.y > 4.5)
-            {
-                goUp = false;
-            }
-        }
-        
-        if (!goUp)
-        {
-            rb.AddForce(lowerPos, ForceMode.Force);
-            if (gameObject.transform.position.y < 3)
-            {
-                goUp = true;
-            }
-        }
+        float newY = startPosition.y + Mathf.Sin(Time.time * speed);
+        transform.position = new Vector3(transform.position.x, newY, transform.position.z);
     }
 }
