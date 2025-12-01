@@ -7,8 +7,10 @@ public class PlayerController : MonoBehaviour
     public int elecScrapAmount;
     public int points;
 
-    public Vector3 force;
+    [SerializeField] private Animator LaelAnim;
+    [SerializeField] private Animator BoardAnim;
 
+    public Vector3 force;
     private float jumpHeight = 7.8f;
     private bool canJump = false;
 
@@ -46,7 +48,17 @@ public class PlayerController : MonoBehaviour
         #endregion
 
         force = new Vector3(0, 0, tilt.x) * mobileSpeed;
-        if(force.z > 0.5f) { force.z = 0.5f; }
+
+        if (force.z > 0)
+        {
+            LaelAnim.SetBool("TurnRight", true); BoardAnim.SetBool("TurnRight", true); LaelAnim.SetBool("TurnLeft", false); BoardAnim.SetBool("TurnLeft", false);
+        }
+        if (force.z < 0)
+        { 
+            LaelAnim.SetBool("TurnLeft", true); BoardAnim.SetBool("TurnLeft", true); LaelAnim.SetBool("TurnRight", false); BoardAnim.SetBool("TurnRight", false);
+        }
+
+        if (force.z > 0.5f) { force.z = 0.5f; }
         if(force.z < -0.5f) { force.z = -0.5f; }
 
         rb.AddForce(force, ForceMode.Impulse);
@@ -59,9 +71,19 @@ public class PlayerController : MonoBehaviour
         Vector3 move = new Vector3(0, 0, horizontal);
         rb.MovePosition(transform.position + move * pcSpeed * Time.deltaTime);
 
+        if (horizontal > 0)
+        {
+            LaelAnim.SetBool("TurnRight", true); BoardAnim.SetBool("TurnRight", true); LaelAnim.SetBool("TurnLeft", false); BoardAnim.SetBool("TurnLeft", false);
+        }
+
+        if (horizontal < 0)
+        {
+            LaelAnim.SetBool("TurnRight", false); BoardAnim.SetBool("TurnRight", false); LaelAnim.SetBool("TurnLeft", true); BoardAnim.SetBool("TurnLeft", true);
+        }
+
         #region Diversão Infinita PIADA
-        if (horizontal < 0) { transform.Rotate(0, -15, 0); }
-        if (horizontal > 0) { transform.Rotate(0, 15, 0); }
+        //if (horizontal < 0) { transform.Rotate(0, -15, 0); }
+        //if (horizontal > 0) { transform.Rotate(0, 15, 0); }
         #endregion
 
         #endregion
@@ -75,6 +97,8 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
             canJump = false;
+            LaelAnim.SetBool("Jumped", true);
+            BoardAnim.SetBool("Jumped", true);
         }
 
         //Mobile Jump
@@ -84,6 +108,8 @@ public class PlayerController : MonoBehaviour
             {
                 rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
                 canJump = false;
+                LaelAnim.SetBool("Jumped", true);
+                BoardAnim.SetBool("Jumped", true);
             }
         }
     }
@@ -103,6 +129,8 @@ public class PlayerController : MonoBehaviour
         if(collision.gameObject.CompareTag("ground"))
         {
             canJump = true;
+            LaelAnim.SetBool("Jumped", false);
+            BoardAnim.SetBool("Jumped", false);
         }
 
         if (collision.gameObject.CompareTag("Obstacle") || collision.gameObject.CompareTag("JumpableObstacle"))

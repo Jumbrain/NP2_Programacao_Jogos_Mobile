@@ -873,6 +873,8 @@ MonoBehaviour:
   audioSource: {fileID: 1933116809}
   quadrinho1: {fileID: 8300000, guid: 1ee1c76b091bea741ad3a17db51ea0df, type: 3}
   quadrinho2: {fileID: 8300000, guid: 9dcbba4fecfde1b4cabf11f5ad2352c9, type: 3}
+  quadrinho3: {fileID: 8300000, guid: 729d121fb2fcdde4c8a04e7c8f527c01, type: 3}
+  quadrinho4: {fileID: 8300000, guid: e96d4fa1349a53640871e861dffa9334, type: 3}
 --- !u!82 &1933116809
 AudioSource:
   m_ObjectHideFlags: 0

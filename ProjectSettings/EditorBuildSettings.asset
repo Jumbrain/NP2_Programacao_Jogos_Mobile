@@ -20,6 +20,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Fase 3.unity
     guid: 5b350b6ed2edb174d93477883faec409
+  - enabled: 1
+    path: Assets/Scenes/Fim.unity
+    guid: e8c81ee57816af64fb5f9f1a3be1f1b9
+  - enabled: 1
+    path: Assets/Scenes/Derrota.unity
+    guid: ca26a322d8363744783b94e598f8a52e
   m_configObjects:
     com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000, guid: b9b3589dd70042146b76ac462ef424da, type: 2}
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 1c2756a6c96479247be3573d9c44d666, type: 2}
