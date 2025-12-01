@@ -16,12 +16,12 @@ public class PlayerController : MonoBehaviour
 
     private float pcSpeed = 6.4f;
     private float mobileSpeed = 1.4f;
-    private float deadZone = 0.9f;
+    private float deadZone = 0.3f;
     private bool autoCalibrateOnStart = true;
 
     private Rigidbody rb;
     Vector2 calib;
-    void Start()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         if (autoCalibrateOnStart) { calib = ReadTiltXY(); }

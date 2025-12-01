@@ -21,7 +21,7 @@ public class ObstacleCreator : MonoBehaviour
     {
         if (other.gameObject.CompareTag("ground"))
         {
-            spawnQuantity = Random.Range(8, 12);
+            spawnQuantity = Random.Range(6, 10);
 
             for (int i = 0; i < spawnQuantity; i++)
             {
